@@ -7,7 +7,34 @@ window.onload = () => {
       [ ...document.getElementsByTagName("li")].forEach(item => item.remove());
       // Generate 10 serial keys when the button is clicked.
       generateKeys(10);
+
+      /* THROWS CONFETTI EVERYWHERE! (See confetti.js) */
+      createConfetti(175);
    });
+
+   // Confetti shenanigans
+
+   setInterval(() => {
+      for (const confetti of confettiList) {
+         confetti.left += confetti.xVel;
+         confetti.top += confetti.yVel;
+         confetti.xVel *= 0.975;
+         confetti.yVel *= 0.99;
+         confetti.yVel += 0.05;
+         confetti.updateVisuals();
+
+         // If the confetti is out of bounds
+         if (confetti.left <= -1 || confetti.left >= 101 || confetti.top >= 101) {
+            confettiList.splice(confettiList.indexOf(confetti), 1);
+            delete confetti;
+         }
+      }
+   }, 20);
+
+   // Random confetti
+   setInterval(() => {
+      createConfetti(2);
+   }, 500);
 }
 
 function createListItem(key) {
