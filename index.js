@@ -67,6 +67,7 @@ function isValid(input) {
    });
 
    // Return true if the number is a multiple of 10.
+   // This is the equivalent of the program's 9 instructions between the loop and the JNE jump.
    if (total % 10 == 0) return true;
    // Otherwise return false.
    return false;
